@@ -2,6 +2,8 @@
 # Run on a Domain Controller with RSAT / GPMC installed
 # Uses the -like instead of -eq for searching GP's for Exclude Users or Computer GPO's to logon as a service.
 # Author - Steve McKee - Systems Administrator II - stevemckee@outlook.com
+# Exports findings to c:\Temp\GPOS\UserGPOS with a summary file with the number count and .csv and .xml file
+# NOTE - It's easier to create the -path first before running.
 
 # Get domain name
 $DomainName = (Get-ADDomain).DNSRoot
