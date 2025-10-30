@@ -1,7 +1,7 @@
 # Set variables
 $reportDate = Get-Date -Format "dd-MM-yyyy"
 $reportFileName = "AD-DC-HealthCheck-$reportDate.html"
-$reportPath = "c:\"
+$reportPath = "c:\Temp\ADHealthCheck\"
 $outputToConsole = $true
 $outputToHtml = $false
 
