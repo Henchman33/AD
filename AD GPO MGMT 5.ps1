@@ -509,7 +509,7 @@ $summary = [PSCustomObject]@{
     Html = (Resolve-Path $HtmlPath).ProviderPath
     Folder = (Resolve-Path $OutFolder).ProviderPath
 }
-Write-Host "`nReport generation complete. Files created:" -ForegroundColor Cyan
+Write-Host "Report generation complete. Files created:" -ForegroundColor Cyan
 $summary | Format-List
 
 # End of script
