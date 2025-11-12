@@ -64,6 +64,7 @@ Write-Log "Found $($Servers.Count) server(s) in Active Directory"
 $ServerInventory = @()
 $Counter = 0
 
+Write-Log "This will take some time to run, go get a COFFEE!!!..."
 Write-Log "Gathering detailed information for each server..."
 
 foreach ($Server in $Servers) {
