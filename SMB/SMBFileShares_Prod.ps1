@@ -82,6 +82,17 @@ How to Use the Search Features:
 
 The HTML report will automatically open in your default browser after generation, providing immediate access to both the data and the powerful search functionality.
 
+---Update
+
+Key Fixes Made:
+
+    Fixed the regex escape issue: Changed \$\{\} to \`$`{}`` with proper backtick escaping
+
+    Also fixed the regex replacement: Changed '$1' to '`$1' in the replace functions
+
+    Fixed ACL data escaping: Properly escaped single quotes and double quotes in ACL data
+
+    Fixed variable reference: Added the missing $uniqueServers variable
 #>
 
 # Domain SMB Shares Report Generator
