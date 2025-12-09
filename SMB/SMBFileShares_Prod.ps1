@@ -97,7 +97,7 @@ Key Fixes Made:
 
 # Domain SMB Shares Report Generator
 # Author: Stephen McKee - Systems Administrator 2
-# Description: Script to enumerate all domain servers, their SMB shares and ACLs
+# Description: Script to enumerate all domain servers, their SMB shares and ACLs - or at least tries to :-)
 
 # Import required modules
 Import-Module ActiveDirectory
