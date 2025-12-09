@@ -957,13 +957,13 @@ Write-Host "Total Servers Found: $($servers.Count)" -ForegroundColor Yellow
 Write-Host "Total Shares Found: $($allResults.Count)" -ForegroundColor Yellow
 
 # AUTOMATICALLY OPEN THE HTML REPORT
-Write-Host "Opening HTML report in default browser..." -ForegroundColor Magenta
+Write-Host "Presto!!! - Opening HTML report in default browser..." -ForegroundColor Magenta
 try {
     Start-Process $htmlFile
-    Write-Host "HTML report opened successfully!" -ForegroundColor Green
+    Write-Host "BOOOM!!! - HTML report opened successfully!" -ForegroundColor Green
 }
 catch {
-    Write-Warning "Failed to open HTML report automatically. Please open it manually:"
+    Write-Warning "BOOOO - Failed to open HTML report automatically. Please open it manually:"
     Write-Host $htmlFile -ForegroundColor Cyan
 }
 
