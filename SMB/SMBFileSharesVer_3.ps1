@@ -731,7 +731,7 @@ $htmlFooter = @"
                 if (!searchTerm) return;
                 
                 // Escape special regex characters
-                var escapedTerm = searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                var escapedTerm = searchTerm.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
                 var regex = new RegExp('(' + escapedTerm + ')', 'gi');
                 
                 // Highlight in table cells
