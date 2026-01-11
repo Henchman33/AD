@@ -1,6 +1,7 @@
 # Active Directory Infrastructure Documentation Script - Enhanced Version
 # Author : Steve McKee - Server Administrator 2
 # Run this on a Domain Controller with appropriate permissions
+# Added Security Recommendations at the end of the HTML report
 
 # Set output directory to user's desktop
 $OutputPath = [Environment]::GetFolderPath("Desktop") + "\AD_Documentation"
