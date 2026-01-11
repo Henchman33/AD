@@ -462,7 +462,7 @@ $htmlHeader = @"
         <h1><i class="fas fa-network-wired"></i> Domain SMB File Share Report</h1>
         <div class="subtitle">
             Generated: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss') | 
-            Author: Stephen McKee Systems Administrator 2
+            Author: Stephen McKee - Systems Administrator 2
         </div>
     </div>
     
