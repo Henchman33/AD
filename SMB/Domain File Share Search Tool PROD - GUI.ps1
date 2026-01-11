@@ -86,7 +86,7 @@ The HTML report will automatically open in your default browser after generation
 #>
 
 # Domain SMB Shares Report Generator
-# Author: Stephen McKee Systems Administrator 2
+# Author: Stephen McKee - Systems Administrator 2
 # Description: Script to enumerate all domain servers, their SMB shares and ACLs
 
 # Import required modules
