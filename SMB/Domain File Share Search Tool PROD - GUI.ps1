@@ -179,7 +179,7 @@ function Get-ServerShares {
 
 # Main script execution
 Write-Host "=== Domain SMB File Share Report Generator ===" -ForegroundColor Green
-Write-Host "Author: Stephen McKee Systems Administrator 2" -ForegroundColor Green
+Write-Host "Author: Stephen McKee - Systems Administrator 2" -ForegroundColor Green
 Write-Host "Start Time: $(Get-Date)" -ForegroundColor Green
 Write-Host "=" * 60 -ForegroundColor Green
 
