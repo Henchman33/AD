@@ -905,4 +905,4 @@ try {
     Write-Host "Opening report in default browser..." -ForegroundColor Green
 } catch {
     Write-Host "Report generated but could not open automatically. Please open manually: $ReportFile" -ForegroundColor Yellow
-}_D
+}
