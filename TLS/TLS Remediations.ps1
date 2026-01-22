@@ -1,4 +1,4 @@
-<#Below is a single, all-in-one PowerShell ISE–ready hardening script that aligns with IIS Crypto “Best Practices” (modern / secure baseline) and is safe for:
+<# Below is a single, all-in-one PowerShell ISE–ready hardening script that aligns with IIS Crypto “Best Practices” (modern / secure baseline) and is safe for:
 •	Windows Server 2016
 •	Windows Server 2019
 •	Windows Server 2022
@@ -157,10 +157,7 @@ foreach ($path in $dotNetPaths) {
 
 Write-Host "TLS / SCHANNEL hardening complete." -ForegroundColor Green
 Write-Host "REBOOT THE SERVER to apply changes." -ForegroundColor Yellow
-
-
 <#
-
 ________________________________________
 ⚠️ IMPORTANT OPERATIONAL NOTES
 🔁 Reboot Required
