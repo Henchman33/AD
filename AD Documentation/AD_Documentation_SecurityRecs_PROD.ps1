@@ -550,6 +550,7 @@ $HTML += @"
 $Tier0Groups = @(
     "Domain Admins",
     "Enterprise Admins",
+    "Tier 0 Operators",
     "Schema Admins",
     "Administrators"
 )
@@ -593,6 +594,7 @@ $HTML += @"
 
 $Tier1Groups = @(
     "Server Operators",
+    "Tier 1 Operators",
     "Backup Operators",
     "Account Operators",
     "Print Operators"
@@ -646,6 +648,7 @@ $Tier2Groups = @(
     "Help Desk",
     "Helpdesk Operators",
     "Desktop Support",
+    "Tier 2 Operators",
     "Remote Desktop Users"
 )
 
@@ -704,6 +707,13 @@ $ServiceAccounts = Get-ADUser -Filter * -Properties ServicePrincipalName, Descri
         ($_.SamAccountName -like "svc_*") -or 
         ($_.SamAccountName -like "svc-*") -or
         ($_.SamAccountName -like "*service*") -or
+        ($_.SamAccountName -like "svc1-*") -or
+        ($_.SamAccountName -like "svc2-*") -or
+        ($_.SamAccountName -like "svc3-*") -or
+        ($_.SamAccountName -like "SVC_*") -or
+        ($_.SamAccountName -like "SVC0_*") -or 
+        ($_.SamAccountName -like "SVC1_2*") -or
+        ($_.SamAccountName -like "SVC2_*") -or
         ($_.Description -like "*service account*")
     }
 
