@@ -712,7 +712,7 @@ $ServiceAccounts = Get-ADUser -Filter * -Properties ServicePrincipalName, Descri
         ($_.SamAccountName -like "svc3-*") -or
         ($_.SamAccountName -like "SVC_*") -or
         ($_.SamAccountName -like "SVC0_*") -or 
-        ($_.SamAccountName -like "SVC1_2*") -or
+        ($_.SamAccountName -like "SVC1_*") -or
         ($_.SamAccountName -like "SVC2_*") -or
         ($_.Description -like "*service account*")
     }
