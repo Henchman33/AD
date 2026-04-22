@@ -12,6 +12,8 @@
     - Run from PowerShell ISE
     - Requires network access to target servers
     - Credentials must have permission to modify local groups on target servers
+    - GitHub URL - https://github.com/Henchman33/AD/blob/main/Users/Add%20User%20Account%20to%20Server%20Admin%20and%20RDP%20Groups/Add-User-Admin-RDP-GUI.ps1
+    - Users/Add User Account to Server Admin and RDP Groups/Add-User-Admin-RDP-GUI.ps1
 #>
 
 Add-Type -AssemblyName System.Windows.Forms
