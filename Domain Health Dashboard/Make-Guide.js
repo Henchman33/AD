@@ -1,5 +1,3 @@
-# Good, now I have everything I need. This is a large, complex report — let me build it iteratively.
-
 const { Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell,
         HeadingLevel, AlignmentType, BorderStyle, WidthType, ShadingType,
         VerticalAlign, Header, Footer, LevelFormat, PageBreak } = require('docx');
