@@ -8,7 +8,7 @@ Purpose:
     accounts in the specified OU.
 
 Behavior:
-    - Searches for accounts beginning with "SAPService"
+    - Searches for accounts beginning with "Service"
     - Checks current msDS-SupportedEncryptionTypes value
     - Enables AES128 + AES256 if not already enabled
     - Skips accounts already configured correctly
