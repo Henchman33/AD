@@ -1,3 +1,26 @@
+<# 
+### Script
+Save this as something like DiskCleanup-Server.ps1 and run it as PowerShell ISE from a management workstation or deploy it to servers through GPO. 
+The script targets server operating systems discovered in AD, uses UNC paths for remote cleanup, skips in-use files, and logs every action per server. 
+It also avoids removing profiles tied to common service-account naming patterns you specified.
+The SCCM cache portion uses the client cache WMI namespace approach commonly used for cache maintenance, and profile cleanup uses Win32_UserProfile with Remove-CimInstance, which is safer than deleting profile folders directly.
+What it does
+
+The script finds server objects in Active Directory with OperatingSystem -like '*Server*', then connects to each server remotely. 
+It cleans temp locations, attempts to skip files that are locked or in use by catching deletion failures, and only removes CCM cache entries older than the age you set. 
+For profiles, it removes only non-special profiles older than the cutoff and avoids names starting with SVC_, SVC0, SVC1, and SAPService.
+Important limits
+
+A few things are worth noting before deploying broadly. 
+Manually deleting SCCM client cache contents is often discouraged in favor of supported cache management, so test the cache section on a pilot group first. 
+The profile-removal logic is based on local profile folders and LastUseTime, which is practical, but you should still verify the exact service-account naming in your environment before mass rollout.
+GPO deployment
+
+Use a Computer Configuration scheduled task so the script runs as SYSTEM on target servers. 
+A common approach is to copy the .ps1 file to a domain share such as \\DOMAIN\NETLOGON\DiskCleanup\DiskCleanup-Server.ps1, 
+then create a GPO under Computer Configuration -> Preferences -> Control Panel Settings -> Scheduled Tasks and configure an action that starts powershell.exe with the script path. 
+Microsoft guidance and common GPO practice also support startup scripts and scheduled tasks for PowerShell deployment.
+#>
 param(
     [string]$SearchBase = "",
 
