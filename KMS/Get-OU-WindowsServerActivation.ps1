@@ -10,7 +10,7 @@ Run in PowerShell ISE as a Administrator
 Import-Module ActiveDirectory
 
 # ===== CONFIGURATION =====
-$SearchBase = "OU=4 Prod,OU=Servers,DC=igtsap,DC=ad,DC=igt,DC=com"
+$SearchBase = "OU=4 Prod,OU=T1 Servers,DC=XXX,DC=XXX,DC=XXX,DC=com"
 $OutputFile = "C:\Temp\ServerActivationStatus.csv"
 # =========================
 
