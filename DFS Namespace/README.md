@@ -1,4 +1,4 @@
-#DFS Namespace PowerShell 5.0 or higher script
+## DFS Namespace PowerShell 5.0 or higher script
 
 Run Script as Administrator on your DFSNasmespace server
 
