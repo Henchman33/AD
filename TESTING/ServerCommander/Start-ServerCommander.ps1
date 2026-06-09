@@ -1,7 +1,7 @@
 #Requires -Version 5.1
 <#
 .SYNOPSIS
-  Server All-In-One - Enterprise Server Management GUI for System Administrators
+  Server Commander -  All-In-One - Enterprise Server Management GUI for System Administrators
 .DESCRIPTION
   A professional WPF-based all-in-one tool for daily server administration tasks:
     - Computer/Server Info (SystemInfo, DriverQuery, WMI Explorer integration)
@@ -40,10 +40,10 @@ Add-Type -AssemblyName System.Drawing
 # =========================================================
 #  GLOBAL CONFIG
 # =========================================================
-$Script:AppName    = "Server All-In-One"
+$Script:AppName    = "Server Commander - All-In-One"
 $Script:Version    = "1.0"
 $Script:IsDark     = $true
-$Script:LogPath    = Join-Path $env:USERPROFILE "Desktop\ServerAllInOne_$(Get-Date -Format 'yyyyMMdd').log"
+$Script:LogPath    = Join-Path $env:USERPROFILE "Desktop\ServerCommander_$(Get-Date -Format 'yyyyMMdd').log"
 $Script:CredStore  = @{}   # key = hostname/domain, value = PSCredential
 $Script:ExportBase = Join-Path $env:USERPROFILE "Desktop"
 $Script:JobList    = [System.Collections.ArrayList]@()
@@ -67,7 +67,7 @@ function Write-Log {
     param(
         [string]$Message,
         [ValidateSet('INFO','WARN','ERROR','DEBUG')][string]$Level = 'INFO',
-        [string]$Component = "ServerAIO"
+        [string]$Component = "Server Commander"
     )
     $severity = switch ($Level) { 'INFO'{1} 'WARN'{2} 'ERROR'{3} 'DEBUG'{0} default{1} }
     $ts = Get-Date -Format "MM-dd-yyyy HH:mm:ss.fff"
@@ -733,7 +733,7 @@ function Get-XAML {
           <ColumnDefinition Width='Auto'/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column='0' Orientation='Horizontal' VerticalAlignment='Center'>
-          <TextBlock Text='[SERVER]' Foreground='White' FontSize='22' FontWeight='Bold' VerticalAlignment='Center' Margin='0,0,10,0'/>
+          <TextBlock Text='[Server Commander v1.0]' Foreground='White' FontSize='22' FontWeight='Bold' VerticalAlignment='Center' Margin='0,0,10,0'/>
           <TextBlock Text='$($Script:AppName) v$($Script:Version)' Foreground='#DDEEFF' FontSize='14' FontWeight='SemiBold' VerticalAlignment='Center'/>
         </StackPanel>
         <StackPanel Grid.Column='2' Orientation='Horizontal' VerticalAlignment='Center' Margin='0,0,12,0'>
