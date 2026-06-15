@@ -1,5 +1,5 @@
 #Requires -Version 5.1
-
+# Light Mode Version - Easier on the eyes for the HTML report
 <#
 .SYNOPSIS
     IGT DFS Namespace Audit Tool - Documents all DFS Namespaces, folder targets,
