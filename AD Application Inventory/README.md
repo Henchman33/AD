@@ -12,9 +12,9 @@
 
     #Organised Output – All files are stored in a timestamped folder on your desktop.
 
-#How to Use
+# How to Use
 
-    Save the script as AD_Application_Inventory.ps1.
+    ###Save the script as AD_Application_Inventory.ps1.
 
     Run it in PowerShell ISE (as Administrator) on a domain‑joined machine.
 
