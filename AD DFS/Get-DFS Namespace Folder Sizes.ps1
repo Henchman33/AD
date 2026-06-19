@@ -2,7 +2,7 @@
 # Light Mode Version - Easier on the eyes for the HTML report
 <#
 .SYNOPSIS
-    IGT DFS Namespace Audit Tool - Documents all DFS Namespaces, folder targets,
+    DFS Namespace Audit Tool - Documents all DFS Namespaces, folder targets,
     hosting servers, and NTFS security group assignments.
 
 .DESCRIPTION
@@ -48,15 +48,15 @@
     Run against a specific DFS server by FQDN.
 
 .EXAMPLE
-    .\IGT-DFS-NamespaceAudit.ps1 -SkipACL -ExportPath "C:\Exports\DFS"
+    .\DFS-NamespaceAudit.ps1 -SkipACL -ExportPath "C:\Exports\DFS"
     Skip ACL collection; write output to a custom path.
 
 .EXAMPLE
-    .\IGT-DFS-NamespaceAudit.ps1 -SkipFolderSize
+    .\DFS-NamespaceAudit.ps1 -SkipFolderSize
     Skip recursive folder size calculation for a faster run.
 
 .NOTES
-    Author   : IGT Server Administration
+    Author   : Stephen McKee - Server Administration
     Version  : 1.0.0
     Platform : PowerShell 5.1
     Modules  : DFSN (required), ActiveDirectory (optional)
@@ -124,7 +124,7 @@ function Write-Log {
 
 Write-Host ''
 Write-Host '  ================================================================' -ForegroundColor Cyan
-Write-Host '     IGT DFS Namespace Audit Tool  v' -NoNewline -ForegroundColor Cyan
+Write-Host '     DFS Namespace Audit Tool  v' -NoNewline -ForegroundColor Cyan
 Write-Host $ScriptVersion -ForegroundColor White
 Write-Host '  ================================================================' -ForegroundColor Cyan
 Write-Host "  Server  : $NamespaceServer"   -ForegroundColor White
