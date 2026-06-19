@@ -28,7 +28,7 @@ try {
 } catch {
     Write-Warning "Not connected to a domain. Using sample data for testing."
     $useSample = $true
-    $domainName = "MYIGT.com"
+    $domainName = "XXX.com"
 }
 
 # --- CONSOLE UI ---
