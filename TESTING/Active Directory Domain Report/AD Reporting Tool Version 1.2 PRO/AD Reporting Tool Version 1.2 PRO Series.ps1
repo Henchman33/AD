@@ -1324,7 +1324,7 @@ VORAUSSETZUNGEN:
                     VerticalAlignment="Center"
                     FontSize="11"
                     Foreground="#E5E7EB"
-                    Text="© 2025 easyIT - PSScripts.de" />
+                    Text="© 2025 Henchman33" />
                 <TextBlock
                     Name="linkWebsite"
                     Grid.Column="2"
@@ -1334,7 +1334,7 @@ VORAUSSETZUNGEN:
                     Cursor="Hand"
                     FontSize="11"
                     Foreground="#93C5FD"
-                    Text="www.phinit.de" Width="136" />
+                    Text="https://github.com/Henchman33" Width="160" />
             </Grid>
         </Border>
     </Grid>
