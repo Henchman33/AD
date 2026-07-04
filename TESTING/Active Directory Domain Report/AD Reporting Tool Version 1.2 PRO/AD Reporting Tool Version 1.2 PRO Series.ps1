@@ -1,21 +1,4 @@
-<#
-================================================================================
-    AD Reporting Tool - Active Directory Reporting Tool
-    Version 1.2 PROD
-    
-    Beschreibung:
-    Umfassendes Reporting-Tool für Active Directory mit moderner WPF-GUI.
-    Bietet detaillierte Analysen von Benutzern, Gruppen, Computern, OUs,
-    GPOs und weiteren AD-Objekten mit Export-Funktionen (CSV, HTML).
-    
-================================================================================
 
-VORAUSSETZUNGEN:
-    - Windows PowerShell 5.1
-    - Active Directory PowerShell Module (RSAT-AD-PowerShell)
-
-================================================================================
-#>
 
 [xml]$Global:XAML = @"
 <Window
