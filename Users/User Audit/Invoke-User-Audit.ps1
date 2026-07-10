@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    Active Directory User Security Export Script
+    Active Directory User Security Export Script - DS output
 .DESCRIPTION
     Queries all Active Directory users across specified domains and exports detailed
     user information including account status, password details, last logon, and
@@ -12,7 +12,7 @@
     .\ADUserSecurityExport.ps1
 #>
 
-#Requires -Modules ActiveDirectory - DS Result
+#Requires -Modules ActiveDirectory
 
 # ============================================================
 # 1. CONFIGURATION
@@ -264,7 +264,7 @@ foreach ($user in $AllUsers) {
     $DomainName = ($user.DistinguishedName -split ',') | Where-Object { $_ -like 'DC=*' } | ForEach-Object { ($_ -replace 'DC=','') -join '.' }
     
     # Extract OU from DistinguishedName
-    $LogonToOU = ($user.DistinguishedName -split ',') | Where-Object { $_ -like 'OU=*' } | ForEach-Object { $_ -replace 'OU=','' } | Join-String -Separator '\'
+    $LogonToOU = (($user.DistinguishedName -split ',') | Where-Object { $_ -like 'OU=*' } | ForEach-Object { $_ -replace 'OU=','' }) -join '\'
     if (-not $LogonToOU) { $LogonToOU = "Domain Root" }
     
     # Alias (mailNickname)
