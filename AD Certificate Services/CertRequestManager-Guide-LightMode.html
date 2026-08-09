@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cert Request Manager — User Guide</title>
+<style>
+  :root{
+    --base:#eef3f7; --mantle:#ffffff; --crust:#dde7ee;
+    --text:#283645; --sub:#5c7180; --overlay:#e2ebf1; --border:#c7d5df;
+    --blue:#1a66be; --green:#2e7a56; --yellow:#876010; --red:#c2384f; --mauve:#5552cc;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--base); color:var(--text);
+    font-family:"Segoe UI", -apple-system, sans-serif; line-height:1.6;
+  }
+  .wrap{max-width:920px; margin:0 auto; padding:48px 32px 100px;}
+  header{border-bottom:1px solid var(--border); padding-bottom:28px; margin-bottom:36px;}
+  header .eyebrow{color:var(--mauve); font-size:13px; font-weight:600; letter-spacing:.08em; text-transform:uppercase;}
+  h1{font-size:32px; margin:8px 0 6px; color:var(--text);}
+  header p{color:var(--sub); font-size:15px; margin:0;}
+  h2{
+    font-size:20px; color:var(--blue); margin:44px 0 14px;
+    padding-bottom:8px; border-bottom:1px solid var(--border);
+  }
+  h3{font-size:16px; color:var(--text); margin:26px 0 8px;}
+  p{color:var(--text); font-size:15px;}
+  .sub{color:var(--sub);}
+  code, .mono{
+    font-family:Consolas, "Cascadia Code", monospace; font-size:13.5px;
+    background:var(--crust); color:var(--green); padding:2px 6px; border-radius:4px;
+  }
+  pre{
+    background:var(--crust); border:1px solid var(--border); border-radius:8px;
+    padding:14px 16px; overflow-x:auto; font-family:Consolas, monospace; font-size:13px;
+    color:var(--green); margin:10px 0 0;
+  }
+  .card{
+    background:var(--mantle); border:1px solid var(--border); border-radius:10px;
+    padding:20px 22px; margin:14px 0;
+  }
+  .steps{list-style:none; margin:0; padding:0; counter-reset:step;}
+  .steps > li{
+    counter-increment:step; position:relative; padding:18px 22px 18px 60px;
+    background:var(--mantle); border:1px solid var(--border); border-radius:10px;
+    margin-bottom:12px;
+  }
+  .steps > li::before{
+    content:counter(step); position:absolute; left:18px; top:18px;
+    width:28px; height:28px; border-radius:50%; background:var(--blue); color:var(--crust);
+    font-weight:700; font-size:14px; display:flex; align-items:center; justify-content:center;
+  }
+  .steps h3{margin:0 0 6px;}
+  table{width:100%; border-collapse:collapse; margin:12px 0; font-size:14px;}
+  th{
+    text-align:left; color:var(--sub); font-weight:600; font-size:12px;
+    text-transform:uppercase; letter-spacing:.04em; padding:8px 12px;
+    border-bottom:1px solid var(--border);
+  }
+  td{padding:10px 12px; border-bottom:1px solid var(--overlay); color:var(--text); vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  .badge{
+    display:inline-block; padding:2px 9px; border-radius:20px; font-size:12px; font-weight:600;
+  }
+  .badge.ok{background:rgba(46,122,86,.12); color:var(--green);}
+  .badge.warn{background:rgba(135,96,16,.12); color:var(--yellow);}
+  .badge.bad{background:rgba(194,56,79,.12); color:var(--red);}
+  .callout{
+    border-left:3px solid var(--blue); background:rgba(26,102,190,.06);
+    padding:12px 16px; border-radius:0 8px 8px 0; margin:14px 0; font-size:14px;
+  }
+  .callout.warn{border-left-color:var(--yellow); background:rgba(135,96,16,.06);}
+  .callout.bad{border-left-color:var(--red); background:rgba(194,56,79,.06);}
+  .callout strong{color:var(--text);}
+  .field-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px 24px;}
+  .field{background:var(--mantle); border:1px solid var(--border); border-radius:8px; padding:12px 14px;}
+  .field .name{font-family:Consolas, monospace; font-size:13px; color:var(--blue); display:block; margin-bottom:4px;}
+  .field .desc{color:var(--sub); font-size:13.5px;}
+  footer{margin-top:60px; padding-top:20px; border-top:1px solid var(--border); color:var(--sub); font-size:13px;}
+  a{color:var(--blue);}
+  ul{color:var(--text); font-size:15px;}
+  .toc{background:var(--mantle); border:1px solid var(--border); border-radius:10px; padding:16px 22px; margin:22px 0;}
+  .toc a{display:block; color:var(--sub); text-decoration:none; padding:4px 0; font-size:14px;}
+  .toc a:hover{color:var(--blue);}
+  @media(max-width:640px){ .field-grid{grid-template-columns:1fr;} .wrap{padding:32px 18px 80px;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">Internal Tool Guide</div>
+    <h1>Cert Request Manager</h1>
+    <p>How to issue internal AD CS certificates from a .csr file, start to finish, on <span class="mono">USRNOPPKICA01.MYIGT.COM</span>.</p>
+  </header>
+
+  <div class="toc">
+    <a href="#before">Before you start</a>
+    <a href="#fields">Request Details fields</a>
+    <a href="#csr">Loading the CSR</a>
+    <a href="#san">Adding SAN entries</a>
+    <a href="#steps">Running Steps 1–3</a>
+    <a href="#pending">If a request goes Pending</a>
+    <a href="#files">Where the files end up</a>
+    <a href="#troubleshooting">Troubleshooting</a>
+  </div>
+
+  <h2 id="before">Before you start</h2>
+  <div class="callout">
+    <strong>Run this elevated, on the Issuing CA.</strong> The tool calls <code>certreq.exe</code> against
+    <span class="mono">USRNOPPKICA01.MYIGT.COM\MYIGT-ISSUING-CA</span> directly, and the "Refresh Templates from CA"
+    button needs local access to the CA to run <code>Get-CATemplate</code> / <code>certutil</code>.
+  </div>
+  <div class="callout warn">
+    <strong>Account permissions matter.</strong> If your account doesn't have auto-approve rights on the chosen
+    template, Step 3 will land the request in a <span class="badge warn">Pending</span> state instead of issuing
+    immediately — see <a href="#pending">If a request goes Pending</a> below.
+  </div>
+  <p>You'll need a <span class="mono">.csr</span> file already generated by the customer or the requesting server —
+     this tool doesn't generate the private key/CSR itself, only the SAN policy step and the CA submission.</p>
+
+  <h2 id="fields">Request Details fields</h2>
+  <div class="field-grid">
+    <div class="field">
+      <span class="name">Server / Service Name</span>
+      <span class="desc">The short name used for the working folder and the CSR filename, e.g. <code>SERVER01</code>. No spaces or invalid path characters.</span>
+    </div>
+    <div class="field">
+      <span class="name">Domain Suffix for FQDN</span>
+      <span class="desc">Pick the child domain the cert's Subject/SAN should live under: <code>igtsap.ad.igt.com</code>, <code>ad.igt.com</code>, <code>is.ad.igt.com</code>, or <code>myigt.com</code>. Editable if you need a one-off value.</span>
+    </div>
+    <div class="field">
+      <span class="name">Resulting FQDN</span>
+      <span class="desc">Read-only, auto-built from the two fields above (e.g. <code>server01.igtsap.ad.igt.com</code>). This becomes the filename base for the policy CSR, .cer, and .p7b.</span>
+    </div>
+    <div class="field">
+      <span class="name">Certificate Template</span>
+      <span class="desc">The template's internal <code>Name</code> (not its display name) — see below. Editable combo box.</span>
+    </div>
+    <div class="field">
+      <span class="name">Issuing CA -config string</span>
+      <span class="desc">Defaults to <code>USRNOPPKICA01.MYIGT.COM\MYIGT-ISSUING-CA</code>. Persisted between runs.</span>
+    </div>
+    <div class="field">
+      <span class="name">Base Working Folder</span>
+      <span class="desc">Root folder on this server under which a per-server subfolder is created, e.g. <code>C:\PKI\CertRequests</code>. Persisted between runs.</span>
+    </div>
+  </div>
+
+  <h3>About the Certificate Template field</h3>
+  <p>Your CA's template <em>display names</em> (what you see in the MMC) often don't match the internal
+     <code>Name</code> that <code>certreq -attrib "CertificateTemplate:&lt;Name&gt;"</code> actually needs —
+     for example the display name "Web Server IGT Internal" maps to the internal name <code>WEbServerIGTInternal</code>.</p>
+  <div class="callout">
+    Click <strong>Refresh Templates from CA</strong> before Step 3 to pull the exact internal names straight
+    from the CA (<code>Get-CATemplate</code>, falling back to <code>certutil -CATemplates</code> if that module
+    isn't available). This replaces the built-in fallback list with live, guaranteed-correct values.
+  </div>
+
+  <h2 id="csr">Loading the CSR</h2>
+  <p>Use one of the two options in the <strong>CSR Source</strong> panel — whichever is already populated wins:</p>
+  <table>
+    <tr><th>Option</th><th>When to use it</th></tr>
+    <tr><td><strong>Browse .csr</strong></td><td>You already have the <span class="mono">.csr</span> file saved somewhere (Desktop, a share, an email attachment you saved).</td></tr>
+    <tr><td><strong>Paste CSR text</strong></td><td>The customer emailed/Teamed you the raw <code>-----BEGIN NEW CERTIFICATE REQUEST-----</code> block instead of a file. Paste it directly — it takes priority over the browsed file if both are filled in.</td></tr>
+  </table>
+
+  <h2 id="san">Adding SAN entries</h2>
+  <p>Every name or IP the certificate needs to be valid for goes in the SAN grid, one row each.</p>
+  <ul>
+    <li>Set <strong>Type</strong> to <code>dns</code> for hostnames/FQDNs, or <code>ipaddress</code> for IPs — this matters, don't put an IP in a <code>dns</code> row.</li>
+    <li>Use <strong>+ Add SAN Row</strong> for additional entries, <strong>Remove Selected</strong> to delete one.</li>
+    <li><strong>Add FQDN as DNS SAN</strong> auto-fills the primary FQDN (built from Server Name + Domain Suffix) as a <code>dns</code> row — use this first, then add any extra names/IPs on top.</li>
+  </ul>
+  <div class="callout warn">
+    At least one SAN row with a value is required — Step 1 will refuse to run without one.
+  </div>
+
+  <h2 id="steps">Running Steps 1–3</h2>
+  <ol class="steps">
+    <li>
+      <h3>Create Folder + SAN.inf</h3>
+      <p>Creates <span class="mono">&lt;BasePath&gt;\&lt;ServerName&gt;\</span>, drops the CSR in as
+      <span class="mono">&lt;ServerName&gt;.csr</span>, and writes a <span class="mono">SAN.inf</span> built from
+      your SAN grid rows. Re-running this after editing SAN rows just overwrites <span class="mono">SAN.inf</span> —
+      safe to repeat.</p>
+    </li>
+    <li>
+      <h3>certreq -policy</h3>
+      <p>Runs <code>certreq -policy -config &lt;CA&gt; &lt;Server&gt;.csr SAN.inf &lt;fqdn&gt;.csr</code>, merging
+      the SAN extension into the original CSR. Produces the policy CSR (named after the FQDN) that Step 3 submits.
+      Requires Step 1's files to already be in the folder.</p>
+    </li>
+    <li>
+      <h3>certreq -submit (Issue)</h3>
+      <p>Runs <code>certreq -submit -attrib "CertificateTemplate:&lt;Name&gt;" -config &lt;CA&gt; &lt;fqdn&gt;.csr &lt;fqdn&gt;.cer &lt;fqdn&gt;.p7b</code>.
+      The log reports one of three outcomes:</p>
+      <table>
+        <tr><th>Log result</th><th>Meaning</th></tr>
+        <tr><td><span class="badge ok">Issued</span></td><td>Certificate retrieved immediately — <span class="mono">.cer</span> and <span class="mono">.p7b</span> are in the working folder.</td></tr>
+        <tr><td><span class="badge warn">Pending</span></td><td>Submitted, but needs manual approval on the CA. Note the Request ID from the log.</td></tr>
+        <tr><td><span class="badge bad">Failed</span></td><td>Usually a wrong template Name or CA <span class="mono">-config</span> string — check the Output Log for the certreq error text.</td></tr>
+      </table>
+    </li>
+  </ol>
+
+  <h2 id="pending">If a request goes Pending</h2>
+  <ol>
+    <li>Open the Certification Authority console and approve the request under Pending Requests, using the Request ID shown in the Output Log.</li>
+    <li>Back in the tool, click <strong>Retrieve Pending Request</strong> and enter that same Request ID.</li>
+    <li>This runs <code>certreq -retrieve</code> and drops the issued <span class="mono">.cer</span> into the working folder.</li>
+  </ol>
+
+  <h2 id="files">Where the files end up</h2>
+  <p>Everything lands in <span class="mono">&lt;BasePath&gt;\&lt;ServerName&gt;\</span>. Click
+  <strong>Open Working Folder</strong> at any point to jump straight there in Explorer.</p>
+  <table>
+    <tr><th>File</th><th>Produced by</th></tr>
+    <tr><td><span class="mono">&lt;ServerName&gt;.csr</span></td><td>Step 1 — original CSR, copied or written from paste</td></tr>
+    <tr><td><span class="mono">SAN.inf</span></td><td>Step 1 — SAN extension policy file</td></tr>
+    <tr><td><span class="mono">&lt;fqdn&gt;.csr</span></td><td>Step 2 — policy CSR with SANs merged in</td></tr>
+    <tr><td><span class="mono">&lt;fqdn&gt;.cer</span></td><td>Step 3 (or Retrieve Pending) — the issued certificate</td></tr>
+    <tr><td><span class="mono">&lt;fqdn&gt;.p7b</span></td><td>Step 3 — PKCS#7 chain bundle</td></tr>
+  </table>
+
+  <h2 id="troubleshooting">Troubleshooting</h2>
+  <div class="card">
+    <p><strong>Step 3 fails with a submission error.</strong> Double-check the Certificate Template value has no
+    spaces and matches an internal <code>Name</code> exactly — click Refresh Templates from CA and re-pick it
+    from the dropdown rather than typing it by hand.</p>
+  </div>
+  <div class="card">
+    <p><strong>Refresh Templates from CA doesn't return anything.</strong> The <code>Get-CATemplate</code>
+    cmdlet needs the ADCS/PSPKI PowerShell module; the tool automatically falls back to parsing
+    <code>certutil -CATemplates</code> output if that module isn't present — check the Output Log to see which
+    path it took.</p>
+  </div>
+  <div class="card">
+    <p><strong>Wrong FQDN in the output filenames.</strong> Check the Domain Suffix dropdown — it's easy to
+    leave it on the wrong child domain when working across <span class="mono">igtsap.ad.igt.com</span> /
+    <span class="mono">ad.igt.com</span> / <span class="mono">is.ad.igt.com</span> / <span class="mono">myigt.com</span> requests back to back.</p>
+  </div>
+  <div class="card">
+    <p><strong>Starting over on a folder.</strong> Steps 1–3 are safe to re-run individually — each one just
+    overwrites its own output files in the working folder, so you can fix a field (e.g. a SAN entry) and re-run
+    from that step without deleting anything by hand.</p>
+  </div>
+
+  <footer>
+    Cert Request Manager — internal PKI tooling reference. Run elevated on the Issuing CA.
+  </footer>
+
+</div>
+</body>
+</html>
