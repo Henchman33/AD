@@ -1,0 +1,59 @@
+Essential Best Practices for Active Directory Security
+I’ve put together a checklist for securing Active Directory, covering key areas that help protect the environment from unauthorized access, privilege escalation, and other security risks. Keeping AD secure is critical for any organization, and following these best practices can strengthen overall defenses. Here’s what I’ve compiled so far:
+
+ 
+
+Password & Authentication Security
+
+Enforce strong password policies
+
+Apply fine-grained password policies
+
+Configure account lockout settings
+
+Identity Hygiene & Account Cleanup
+
+Clean up inactive user accounts
+
+Remove stale computer accounts
+
+Secure service accounts with managed identities
+
+User Access Control
+
+Disable guest access
+
+Restrict anonymous access
+
+Configure user rights assignments
+
+Privileged Account Management
+
+Protect built-in administrator accounts
+
+Disable local administrator accounts
+
+Use separate admin and regular user accounts
+
+Limit privileged group usage
+
+Implement tiered administration model
+
+Follow least privilege using RBAC
+
+Auditing & Monitoring
+
+Enable advanced audit policies
+
+Maintenance, Patch, & Recovery
+
+Patch domain controllers regularly
+
+Reset the Krbtgt account password
+
+Use secure admin workstations (SAW)
+
+Perform and test Active Directory backups
+
+
+Rename and rotate password of AD break glass account bi annually.
