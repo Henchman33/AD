@@ -1,0 +1,10 @@
+Show-ADGroupMember -GroupName 'Domain Admins', 'Enterprise Admins', 'Administrators', 'Account Operators', 'Backup Operators' -FilePath $PSScriptRoot\Reports\GroupMembership.html
+
+Show-WinADGroupMember -GroupName 'Domain Admins' -FilePath $PSScriptRoot\Reports\GroupMembership.html
+
+https://evotec.xyz/blog/visually-display-active-directory-nested-group-membership-using-powershell/
+
+
+
+
+
