@@ -1,5 +1,4 @@
-#
-# AD_Manager.ps1 v2.0
+#AD_Manager.ps1 v2.0
 # Author : 
 # Requires: PowerShell 5.1+, RSAT (ActiveDirectory + GroupPolicy)
 #            DnsServer + DhcpServer modules are optional
