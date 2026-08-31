@@ -17,5 +17,7 @@ If you need anything else (light/dark theme toggle, more attributes on create, o
 | **Tabs**             | Darker professional blue (#1B4F72) with **white lettering**. Selected / hover state uses a slightly lighter blue (#2874A6).        |     |
 | **Overall look**     | Clean light theme, high contrast, professional corporate feel.                                                                     |     |
 
+<img width="1629" height="1001" alt="image" src="https://github.com/user-attachments/assets/a3302706-c0e1-4118-9669-a91e0617e46c" />
+
 
 <img width="1636" height="1007" alt="image" src="https://github.com/user-attachments/assets/48f3c82e-1261-4f0b-9b46-d0c94de78803" />
