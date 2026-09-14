@@ -1,4 +1,4 @@
-##Original PowerShell Code by Radu Vuia!!! Thanks Radu!
+## Original PowerShell Code by Radu Vuia!!! Thanks Radu!
  GUI Wrapper created by Stephen McKee
  DFS Access Diagnostics - GUI wrapper
  Wraps the DFS/SMB diagnostic logic in a WinForms front end.
