@@ -1,8 +1,8 @@
-## Original PowerShell Code by Radu Vuia!!! Thanks Radu!
-# GUI Wrapper created by Stephen McKee
-# DFS Access Diagnostics - GUI wrapper
-# Wraps the DFS/SMB diagnostic logic in a WinForms front end.
-# Run with:  powershell.exe -STA -File .\DFS-Diagnostics-GUI.ps1
+##Original PowerShell Code by Radu Vuia!!! Thanks Radu!
+ GUI Wrapper created by Stephen McKee
+ DFS Access Diagnostics - GUI wrapper
+ Wraps the DFS/SMB diagnostic logic in a WinForms front end.
+ Run with:  powershell.exe -STA -File .\DFS-Diagnostics-GUI.ps1
 
 ## DFS Diagnostics GUI Walkthrough
     The window gives you a clean way to launch the diagnostic, monitor progress, and review outcomes without touching the command line.
